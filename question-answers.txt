@@ -1,0 +1,154 @@
+=============== Questions - Answers ============
+
+1). What is Rails 
+
+2). How you will create a new rails application? 
+
+3). How rails Renders the default welcome page?
+
+4). How you run a rails server?
+
+5) What is the controller? 
+
+6) What are controller Actions? 
+
+7) How to create controller in rails and why controller is necessary in rails?
+
+8). How do you create a custom route in rails?
+
+9). How to create a root path in rails? 
+
+10). How do you create and store template for a controller for a controller action? 
+
+11). What are models in rails? 
+
+12. How models are created in Rails? 
+
+13. Why Active Record models are created using Generators only? 
+
+14. Is it required for all the models to have migrations? 
+
+15. When you can not instantiate a model class? 
+
+16. What are migrations in Rails? 
+
+17. How to create migrations? 
+
+18. What is change method in migrations?
+
+19. How to add new attribute to existing table using migration?
+
+20. How to remove attributes from existing table using migration?
+
+21. How to rename attributes in existing table using migration?
+
+22. What do you mean by running a migration? 
+
+23. What do you mean by rollback a migration?
+
+24. What is resource controller? 
+
+25. What do you mean by resource routing? 
+
+26. How can you create a resource controller in a rails app?
+
+27. What is the advantage of creating a resource controller? 
+
+28. Can you define a resource controller even if it does not have database table or model? 
+
+29. What is seed files in Rails? 
+
+30. How to populate dummy data using seed file? 
+
+31. What is the role of index action in a resource controller?
+
+32. How to implement index action for resource controller? 
+
+33. What are the partials in Rails? 
+
+34. Why partials are used? 
+
+35. How partials are different from regular view templates?
+
+36. What are the naming Conventions for partials ?
+
+37. How to pass local variables to the partials?
+
+38. Share An Example Where one can use the partials?
+
+39. Is it possible to create a partial without a leading underscore? 
+
+40. What do you mean by scaffolding in rails? 
+
+41. What is THe advantages of using scaffolding?
+
+42. When you should choose scaffold? 
+
+43. What is Active Record? 
+
+44. What is ORM Framework? 
+
+45. What do you mean by business data in terms of models?
+
+46. What is the ActiveRecord is responsible for in MVC architecture? 
+
+47. What do you mean by naming Conventions for Active Record models? 
+   When using class names composed of two or more words, the model class name should follow the Ruby conventions, using the CamelCase form, while the table name must use the snake_case form.
+   And Model Name must be singular so tables name is pluralize.. 
+     
+48. What do you mean by creating table migrations?
+
+49. When do you need to write migration for creating a table? 
+
+50. Is it possible to create a table in Rails without having a model for this table? 
+
+51. How to change Type of existing column in a table in Rails?
+
+52. How change_column method methods works and how many arguements it can accept ? 
+
+53. Why change_column migration is not automatically reversible? 
+
+54. How can you make a change_column migration reversible? 
+
+55. Which Version of Rails has introduced change method for migrations? 
+   Rails 3.1 makes migrations smarter by providing a new change method
+   
+56. What Are the advantages of older rails version migrations which uses up and down methods? 
+
+57. What is an association in Rails? 
+
+58. Why we need associations in rails?
+
+59. How many types of associations are supported by rails? 
+
+60. What is belongs_to association?
+
+61. How to implement one-to-many relationship between two models in Rails? 
+
+62. What do you mean by primary key and foreign keys?  
+
+63. What rails association are used to implement one-to-many relationship? 
+
+64. What is has_and_belongs_to_many association ? And how can you implement this?
+
+65. How you should name your join table ? 
+
+66. When you need to explicitly mention the join_table name into model classes?
+
+67. What are the possible attributes of a join table?
+
+68. How can you insert records into a has_and_belongs_to_many association?
+   course1 = course.find(1)
+   students1 = Student.find(1)
+   course1.students << students1 
+
+69. What is the difference between has_many :through and has_and_belongs_to_many association?
+
+70. When has_many :through is better choice over has_and_belongs_to_many? 
+
+71. What is polymorphic association? 
+
+72. In What cases you should use polymorphic associations? 
+
+73. Give some Examples of polymorphic association? 
+
