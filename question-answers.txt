@@ -152,3 +152,14 @@
 
 73. Give some Examples of polymorphic association? 
 
+74. What do you mean by callbacks? 
+
+75. What are the common callbacks used for all create, update and delete an object? 
+
+76. What are the common callbacks used for both create and update?
+
+77. What is the difference between after_save and after_commit callbacks?
+
+78. What is the difference between after_save , after_create and after_update callbacks? 
+
+79. 
