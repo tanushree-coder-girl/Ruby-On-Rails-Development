@@ -1157,6 +1157,65 @@
     This is the file where you can handled all the routes of your app => config/routes.rb
 
 47. Members And collection routing 
+    Member route is a route which requires the id of the resource to perform an action. 
+    Collection method does not require any id.
+
+    example:1
+
+        resource :students do 
+            member do 
+                get 'your_route'
+            end
+
+            collection do 
+                get 'collection_route_here'
+            end
+        end
+
+    Note: If you only need to add one member or collection route then you can also write like 
+        
+        resource :student do
+            get :member_route_herre, on: :member,
+            get :collection_route_here, on: :collection,
+        end
+
+    If You don't write member block or collection block then by default it will considered as member route as: 
+
+        resource :student do 
+            get :your_route
+        end
+
+    You can CHeck your routes by type
+    rails routes 
 
 48. Namespace and scoped routing 
-    
+    This is the simple option. When you use namespace , it will prefix the URL path for the specified resources, and try to locate the controller under a module named in the same manner as the namespace
+
+    if you want to add controller inside a separate folder like 
+    app/controllers/admin/students_controller.rb  
+    Then you can create folder inside controller and add your controller file and define namespace route like 
+        namespace :admin do 
+            resources :students
+        end
+
+    check routes => rails routes |grep admin
+         admin_students GET    /admin/students(.:format)   
+        
+    If you want to remove admin prefix in url then you can use scope module like 
+        scope module: :admin do 
+            resources :students
+        end
+
+    check routes => rails routes |grep admin
+        admin/students#index  GET    /students(.:format) 
+
+    If you want add only prefix with any resource route then use scope routing 
+    scope routing check controller inside controller folder but add prefix in url like 
+        scope :admin do 
+            resources :students
+        end
+
+    check routes => rails routes |grep admin
+        students#index  GET    /admin/students(.:format) 
+
+49. Using Active Support Concern in Rails 
