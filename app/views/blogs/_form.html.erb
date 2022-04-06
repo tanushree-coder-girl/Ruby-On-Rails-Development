@@ -1,0 +1,25 @@
+<%= form_with model: blog do |form| %>
+    <% if @blog.errors.any? %>
+        <% @blog.errors.full_messages.each do |msg| %>
+            <p> <%= msg %> </p>
+        <% end %>
+    <% end %>
+
+    <div>
+        <%= form.label :title%><br />
+        <%= form.text_field :title %>
+    </div>
+    <div>
+        <%= form.label :content%><br />
+        <%= form.text_field :content %>
+    </div>
+    <div>
+        <%= form.label :student_id%><br />
+        <%= form.number_field :student_id, value:1, type: :hidden %>
+    </div>
+    <div>
+        <br/>
+        <%= form.submit %>
+    </div>
+<% end %>
+<%= link_to "Back", blogs_path %>

@@ -9,6 +9,13 @@ class Student < ApplicationRecord
    
    # validations
    validates :first_name, :last_name, :email, presence: true
+   validates :email, uniqueness: true
+   validates :first_name, :last_name, length: {minimum:3, maximum:50}
+   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/ , message: "Only lettter are allowed"}
+   validates :permanent_contact_number, presence: true, numericality: true
+   
+   # Custom Validation 
+   validate :validate_student_age
 
    # Active record callbacks 
    before_create :display_student_age
@@ -23,5 +30,28 @@ class Student < ApplicationRecord
       else
          puts "=============Age cannot br calculated without date of birth============"
       end
+   end
+
+   def validate_student_age 
+      if self.date_of_birth.present?
+         age = Date.today.year - self.date_of_birth.year 
+         if age < 15 
+            errors.add(:age, ' Please Provide a Valid date of birth here. Age must be greater than 15 ')
+         end
+      end
+   end 
+
+   # Instance Methods
+   def full_name
+      "#{first_name} #{last_name}"
+   end
+
+   def age 
+     return nil unless date_of_birth.present? 
+     return Date.today.year - date_of_birth.year 
+   end 
+
+   def name_with_email 
+      "#{full_name} / #{email}"
    end
 end
