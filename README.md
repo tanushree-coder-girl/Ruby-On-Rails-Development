@@ -1103,4 +1103,60 @@
     Practical on : app/controllers/blogs_controller.rb
 
 43. ActionController in details 
+    Action controller is the C in the MVC 
+        After the router has determined which controller to use for a request, the controller is responsible for making sense of the request and producing the appropriate output. 
+
+44. Action controller Callbacks in Controller 
+    Rails provides before and after actions in controllers as an easy way to call methods before or after executing controller actions as response to route requests. Action Callbacks can be particularly helpful when implementing authentication/authorization for example, and are heavily used by gems such as Devise.
+
+        before_action :greeting_msg 
+        after_action :goodbye_msg 
+
+        def greeting_msg 
+            puts "welcome"
+        end
+
+        def goodbye_msg 
+            puts "Take Care"
+        end
+    
+    Practical check : app/controllers/application_controller.rb
+
+45. Action View in Rails 
+    Action View is the V in MVC 
+    In Rails, web requests are handled by Action Controller and Action View. Typically, Action Controller is concerned with communicating with the database and performing CRUD actions where necessary. Action View is then responsible for compiling the response.
+
+46. Rails Routing in Details: 
+    Root Route 
+        root 'controllername#methodname'
+    Get route 
+        get 'controller/method'
+        get '/url' , to:'controller#method'
+        get '/url' => 'controller#method'
+        get "/url" => "controller#method", :as => :student
+    Get route with params
+        get '/url/:id', to: 'controller#method'
+    post route 
+        post '/students', to 'students#create'
+    put route
+        post 'students/:id', to 'students#update'
+    Delete route 
+        delete '/students/:id' => 'students#destroy'
+    Resource route 
+        resources :resource_name
+        resources :one_resource, :two_resource, :three_resource
+
+    CRUD Routing Is like : 
+        get '/users/new' => 'users#new'
+        post '/users' => 'users#create'
+        get '/users/:id' => 'users#show'
+        get '/users/:id/edit' => 'users#edit'
+        patch '/users/:id' => 'users#update'
+        delete '/users/:id' => 'users#destroy'
+
+    This is the file where you can handled all the routes of your app => config/routes.rb
+
+47. Members And collection routing 
+
+48. Namespace and scoped routing 
     
