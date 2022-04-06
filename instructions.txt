@@ -921,3 +921,186 @@
             
     Practical Example on => app/models/demo.rb  
     For live use practical example => app/models/student.rb
+
+38. Validations 
+    Validations are the way using which we can ensure that only valid data is saved into the database. 
+    We will focus on Model Level validations only . 
+
+    Other WAys to validate Data before save 
+        1. Database Constraints
+        2. Client Side validations 
+        3. Controller level validations 
+
+    When Validation performed? 
+        1. Create 
+        2. Update 
+        3. Save 
+    
+    Rails Console 
+        check data is valid or not 
+            varaible.valid? 
+        check data is invalid or not 
+            varaible.invalid? 
+        For check errros 
+            variable.errors 
+        For check error message 
+            varaible.errors.messages 
+            varaible.errors.full_messages  
+        Example 
+            presence 
+            uniqueness 
+            numerically 
+            format 
+    Syntax 
+        validates :attribute, presence: true, uniqueness: { case_sensitive: false }, length: {maximum: 50}, format: { with: ConstantData::VALID_EMAIL_REGEX }, if: :method_name?
+   
+   Practical Example 
+        Check validation in => app/models/student.rb 
+
+39. Instance Methods for active record objects 
+    Instance method are methods which require an object of its class to be created before it can be called. To invoke a instance method, we have to create an Object of the class in which the method is defined.
+
+    Instance Method 
+        def full_name
+            "#{first_name} #{last_name}"
+        end
+
+    Use of instance method in view like 
+        <%= @instance_variable.full_name%> 
+
+    Practical Example on file : app/models/student.rb
+                                app/views/students/show.html.erb
+
+40. Active Record Queries 
+    Active REcord Queries are the best way to perform database operations in Rails rather than writing raw SqL queries.
+
+        example:1 
+            Fetch All Studetn From Database 
+            Active Record Queries like
+                Student.all 
+            Raw SQL queries like 
+                select * from students; 
+
+        example:2
+            Fetch a single Student from Database with id provided 
+            Active Record Queries like
+                Student.find(id) 
+            Raw SQL queries like 
+                select * from students where students.id = id; 
+
+    Some Active REcord Query Methods: 
+        1. find 
+        2. find_by 
+        3. first/last 
+        4. where 
+        5. order 
+        6. select 
+        7. limit 
+    
+    1. Find 
+        The find Method requires an arguement and that is the primary key of that model instance. 
+            Student.find(1)
+            Student.find(1,2,3,4)
+
+    2. find_by 
+        Finds the first record matching the specified conditions.
+            Student.find_by(id: "5")
+            Student.find_by(first_name: "abc")
+            Student.find_by(date_of_birth: Date.today - 20.years)
+            Student.find_by(email: 'abc@gmail.com')
+    
+    3. Pluck 
+        for find a separate column of all records 
+            Student.pluck(:email)
+
+    4. First and last 
+        Student.first
+        Student.last
+        Student.first(5)
+
+    5. where 
+        It returns a new relation, which is the result of filtering the current relation according to the conditions in the arguments. 
+        The where method allows you to specify conditions to limit the records returned, representing the WHERE part of the SQL statement. Conditions can either be specified as a string, array or hash. 
+        Student.where(first_name: "xyz")
+        Student.where('first_name = ?', 'xyz')
+        Student.where(id: 1..20)
+        Student.where(id: [1,2,3,4,5])
+        Student.where('id IN (?)', 1..20)
+        Student.where('id IN (?)', [1,2,3,4,5])
+        Student.where('id IN (?)', 1..5).find(2)
+        Student.where('id IN (?)', 1..5).class 
+    
+    6. order 
+        Retrives the record from the database in an specific order 
+        Default order is ascending 
+        Student.order(:first_name)
+        Student.order('first_name')
+        Student.order(first_name: :desc)
+        Student.order('first_name DESC')
+        Student.order(first_name: :asc, email: :desc)
+        Student.order(:first_name, email: :desc).first
+        Student.order(:first_name, email: :desc).find(10)
+        Student.order(:first_name, email: :desc).find_by(email: 'ashy@gmail.com')
+    
+    7. select query 
+        Find only specific columns 
+        Student.select(:id, :first_name, :last_name)
+        Student.where('id IN (?)', 1..5).select(:email, :id)
+
+    8. Limit Method 
+        Student.limit(5)
+        Student.order(:first_name).limit(2)
+        Student.limit(5).offset(10)             returns 5 records starting from 10th 
+
+    9. Array Methods Vs Query Methods
+        Difference between array and Query method is that we cannnot chaining others methods on array method. 
+
+        example 
+            Student.first(5).order(:first_name)    //Cannot use like this bcoz first is array method 
+            Student.limit(5).order(:first_name)    //CAn use like this bcoz limit is query method 
+
+        Example 
+        Array Method 
+            Student.first(5)
+            Student.last(5)
+        Query Method 
+            Student.limit(5)
+            etc...
+
+        How can we check is array method or query method? 
+        So we can check like this 
+            Student.first(5)).class 
+            Student.limit(5).class
+
+        So by using .class we can check whether it is array method or query method 
+
+41. N+1 Query Problem and its solution 
+    What is N+1 Query Problem? 
+        It happens when a query is executed on each results of the previous query. 
+        It is fine if the application is very small and has very few resources. 
+        for example:
+            blogs = Blog.all
+            blogs.each { |blog| puts blog.student.email }
+            So the query runs every time for each student 
+        Solution for N+1 queries 
+            Eager Loading 
+            for example 
+                blogs = Blog.includes(:student)
+                blogs.each { |blog| puts blog.student.email}
+                So you can find that this time query run only once 
+
+42. Eager loading in rails
+    Eager Loading is the process whereby a query loads a resource as soon as the code is ececuted. It also leads the related entities (association) as part of the query. 
+        Eager Loading Methods 
+            1. includes 
+                @blogs = Blog.includes(:student)
+            2. preload 
+                @blogs = Blog.preload(:student)
+            3. eager_load
+                @blogs = Blog.eager_load(:student)
+
+    Recommended method is includes
+    Practical on : app/controllers/blogs_controller.rb
+
+43. ActionController in details 
+    
