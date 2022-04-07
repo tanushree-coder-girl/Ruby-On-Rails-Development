@@ -1219,3 +1219,77 @@
         students#index  GET    /admin/students(.:format) 
 
 49. Using Active Support Concern in Rails 
+    A rails concern is any module that extends ActiveSupport::Concern module.
+    A concern modelue looks like this:
+
+        module ConcernModule 
+            extend ActiveSupport::Concern
+            
+            included do
+                # do something here
+            end
+
+            def some_method 
+                # do something here
+            end
+        end
+
+    Then include concern in models like 
+        include ConcernModule
+    
+    Active Support Concern must be created in app/models/concerns folder 
+    Practical on : app/models/concerns/validatable.rb 
+                    app/models/course.rb    
+
+50. Scope in Active Record 
+    Scopes are custom queries that you define inside your Rails models with the scope method. Every scope takes two arguments:
+    A name, which you use to call this scope in your code.
+    A lambda, which implements the query.
+    like: 
+        scope :name, -> { where(:attibute => value)}
+    With Argument:
+        scope :name, ->(argument){ where(attribute: argument) }
+    using Lamba
+        scope :name, lambda { where(:attibute => value)}
+
+    Ex:- scope :active, -> {where(:active => true)}
+        Then you can use this scope like: Modalname.active
+
+    Practical on : app/models/concerns/validatable.rb 
+
+51. Action Helpers in Rails 
+    Helpers are used to extract complex logic out of the view so that you can organize your code better.
+    example 
+        module ApplicationHelper 
+            def my_helper_method(varalbe)
+                # your code
+            end
+        end 
+        
+    Use this inside view like this 
+        my_helper_method(varaible)
+    
+    Write action helpers inside helper folder 
+    app/helpers 
+
+    Practical example on: app/helpers/application_helper.rb 
+    Use of this helper in : app/views/students/show.html.erb
+
+52. Action Helpers method in controller 
+
+    <!-- We have to include application helper for use helpers in controllers  -->
+    include ApplicationHelper 
+
+    <!-- Helper method use -->
+    def print
+        formatted_date(date) 
+    end 
+
+    <!-- Helper method -->
+    def formatted_date(date)
+        date.strftime('%A, %b %d, %Y') if date.present?
+    end
+
+    Check : app/controllers/students_controller.rb 
+
+53. Introduction to webpacker 

@@ -8,6 +8,13 @@
 <p> <strong>permanent Contact Number ☎️ :</strong>  <%= @student.permanent_contact_number  %> </p>
 <p> <strong>Alternate Contact Number 📞 : </strong> <%= @student.alternate_contact_number  %> </p>
 <p> <strong>Date Of Birth 🧒 : </strong> <%= @student.date_of_birth  %> </p>
+
+<% if @student.date_of_birth.present? %>
+<p> <strong>Date Of Birth 🧒 : </strong> <%= @student.date_of_birth.strftime('%A, %b %d %Y' )  %> </p>
+<% end %>
+
+<p> <strong>Date Of Birth 🧒 : </strong> <%= formatted_date(@student.date_of_birth)  %> </p>
+
 <p> <strong> Age 🧒 : </strong> <%= @student.age  %> </p>
 
 <%= link_to "Back", students_path %>

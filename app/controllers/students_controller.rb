@@ -1,9 +1,13 @@
-class StudentsController < ApplicationController
+class StudentsController < ApplicationController 
+    include ApplicationHelper 
+
     before_action :set_student, only: %i[show edit update destroy] 
+
+    helper_method :formatted_date
 
     # for displaying all records 
     def index
-        @students = Student.all
+        @students = Student.all 
     end
     
     # for creating form instance 
@@ -33,6 +37,8 @@ class StudentsController < ApplicationController
 
     def show
         #@student = Student.find(params[:id])
+
+        puts formatted_date(@student.date_of_birth) 
     end 
 
     def edit 
@@ -61,5 +67,9 @@ class StudentsController < ApplicationController
 
     def student_params
         params.require(:student).permit(:first_name, :last_name, :email, :local_address, :permanent_address, :permanent_contact_number, :alternate_contact_number, :date_of_birth)
+    end 
+
+    def formatted_date(date)
+        date.strftime('%A, %b %d, %Y') if date.present?
     end
 end
