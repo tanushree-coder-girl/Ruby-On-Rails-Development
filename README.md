@@ -1293,3 +1293,62 @@
     Check : app/controllers/students_controller.rb 
 
 53. Introduction to webpacker 
+    Webpacker is a rails wrapper around the webpack. 
+    Webpack 
+        Allow you to write your front end code in a way that is convenient for developers and then package that code in a way that is convenient for browsers. 
+    Sprockets vs webpacker
+        Webpackers => It is better to use over Sprockets if you want to work with modern javascript and rails. 
+        Sprockets => It is better choice than webpacker if you are working with legacy web application , because migration can be costly there. 
+    Webpacker code is write inside: ⬇️
+        app/javascript/packs/application.js
+
+54. Using Twitter Bootstrap with webpacker 
+    1. Install using npm or yarn
+        yarn add bootstrap@4.3.1 jquery popper.js
+    2. Add this in  config/webpack/environment.js
+        const webpack = require("webpack")
+        environment.plugins.append("Provide", new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            Popper: ['popper.js', 'default']
+        }))
+    3. Then create css a folder inside app/javascript 
+        app/javascript/css 
+        inside css folder create application.scss file 
+        app/javascript/css/application.scss
+        Then add this in application.scss 
+        @import "~bootstrap/scss/bootstrap.scss";
+    4) Go to app/views/layouts/application.html.erb
+        Change link tag to pack tag 
+        This 
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        To this 
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    5) THen Go to app/javascript/packs/application.js 
+        add this
+            import "css/application";
+            import $ from 'jquery';
+            global.$ = jQuery; 
+            import "bootstrap"; 
+
+55. Working With bootstrap 
+    Now you can add bootstrap components and grid system in your app as you like your design to be created. 
+    for example: 
+        we add a container in application.html.erb so you can add all other styling in all files as you like:
+         <div class="container">
+            <div class="row">
+                <%= yield %>
+            </div>
+        </div> 
+    
+56. Adding Header Footer partials 
+    Create folder inside view for partials 
+    app/views/shared 
+    in this add your partials file 
+        app/views/shared/_footer.html.erb
+        app/views/shared/_header.html.erb
+    And Render it in your application.html.erb like 
+        <%= render "shared/header" %>
+        <%= render "shared/footer" %>
+
+57. 
