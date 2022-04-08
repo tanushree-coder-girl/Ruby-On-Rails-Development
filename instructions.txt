@@ -1351,4 +1351,5 @@
         <%= render "shared/header" %>
         <%= render "shared/footer" %>
 
-57. 
+57. Bootstrap Admin Theme Integration in Rails 
+    sb-admin2 => https://startbootstrap.com/theme/sb-admin-2
