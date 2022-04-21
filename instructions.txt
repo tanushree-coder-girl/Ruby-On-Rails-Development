@@ -1352,4 +1352,57 @@
         <%= render "shared/footer" %>
 
 57. Bootstrap Admin Theme Integration in Rails 
-    sb-admin2 => https://startbootstrap.com/theme/sb-admin-2
+
+    Step-1 => Go to admin theme in google and download it and extract it
+    sb-admin2 =>    https://startbootstrap.com/theme/sb-admin-2
+
+    Step-2 => Add Layout for admin 
+    app/views/layouts/admin.html.erb 
+
+    Step-3 Add Necassary Plugins required by admin theme seen in index.html 
+    app/javascript/packs/plugins
+
+    Step-4 Add admin.js in app/javascript/packs/admin.js and import this plugins  
+
+    Step-5 Add necessary stylesheet plugins in app/javascript/css/plugins and add & import in app/javascript/css/admin.scss  
+
+    Step-6 Now Set layout to admin in Students controller bcoz we need this layout for student view 
+    app/controllers/students_controller.rb
+    layout 'admin'
+
+    Step-7 Now in app/views/layouts/admin.html.erb Set all meta tags or pack tags etc and create your design etc....  add partial for aside footer etc add main content etc.. 
+
+    Step-8 Run rails server 
+        rails s 
+        run webpacker => ./bin/webpack-dev-server
+
+    Step-9 Now lets create a dashboad controller 
+        Add a controller in controller/admin folder 
+        app/controllers/admin/dashboard_controller.rb
+            layout 'admin'
+            def index 
+            end 
+        Add route for admin/dashboard 
+             namespace :admin do 
+                get 'dashboard' => 'dashboard#index'
+            end
+        Now Create A view file for dashboard 
+            app/views/admin/dashboard/index.html.erb 
+            Add your stuff in index.html.erb copy paste from admin theme
+        now run: http://localhost:3000/admin/dashboard
+
+58. Add Font Awesome Icons Using Webpacker 
+    Install using yarn command line 
+        yarn add @fortawesome/fontawesome-free 
+
+    Then import 
+    app/javascript/packs/admin.js
+        import '@fortawesome/fontawesome-free/css/all'
+
+    Add Images 
+        Add your images in 
+            app/assets/images
+    Then use like 
+        <%= image_tag "myimg.jpg", class: "rounded-circle" %>
+
+59. 

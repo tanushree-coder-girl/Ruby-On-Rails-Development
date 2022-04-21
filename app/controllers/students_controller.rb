@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController 
+    layout 'admin'
     include ApplicationHelper 
 
     before_action :set_student, only: %i[show edit update destroy] 

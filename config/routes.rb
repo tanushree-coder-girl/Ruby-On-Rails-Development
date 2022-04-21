@@ -14,33 +14,38 @@ Rails.application.routes.draw do
   resources :students
   resources :blogs
 
+  # dashboard
+  namespace :admin do 
+    get 'dashboard' => 'dashboard#index'
+  end
+
   # get 'students/test'
   # resources :students, :courses, :blogs, :projects
 
   # Member and collection route 
-  resources :students do 
-    member do 
-      get :personal_details
-    end
-    # 2nd way of memeber action 
-    # get :personal_details, on: :member
+  # resources :students do 
+  #   member do 
+  #     get :personal_details
+  #   end
+  #   # 2nd way of memeber action 
+  #   # get :personal_details, on: :member
 
-    collection do
-      get :active
-    end
-    # 2nd way of collection action 
-    # get :active, on: :collection
-  end
+  #   collection do
+  #     get :active
+  #   end
+  #   2nd way of collection action 
+  #   get :active, on: :collection
+  # end
 
   # by default it will considered as member route 
-  resources :blogs do 
-    get :my_new_route
-  end
+  # resources :blogs do 
+  #   get :my_new_route
+  # end
 
-  # Namespace and scoped routing 
-  namespace :admin do 
-    resources :students
-  end
+  # # Namespace and scoped routing 
+  # namespace :admin do 
+  #   resources :students
+  # end
 
   # scope module: :admin do 
   #   resources :students
