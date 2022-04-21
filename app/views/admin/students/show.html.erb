@@ -1,0 +1,27 @@
+<div class="col-lg-10">
+    <div class="card rounded-0 shadow mt-5 mb-5">
+        <div class="card-body">
+            <p> <%= notice %> </p>
+            <!-- <h1> Student Name 🧑‍🎓 : <%= @student.first_name %>  <%= @student.last_name  %> </h1> -->
+            <h1> Student Name 🧑‍🎓 : <%= @student.full_name %>  </h1>
+            
+            <p> <strong> Email Address 📧 : </strong>  <%= @student.email  %> </p>
+            <p> <strong> Local Address 🏘️ : </strong>  <%= @student.local_address  %> </p>
+            <p> <strong>permanent Address 🏠 :</strong>  <%= @student.permanent_address  %> </p>
+            <p> <strong>permanent Contact Number ☎️ :</strong>  <%= @student.permanent_contact_number  %> </p>
+            <p> <strong>Alternate Contact Number 📞 : </strong> <%= @student.alternate_contact_number  %> </p>
+            <p> <strong>Date Of Birth 🧒 : </strong> <%= @student.date_of_birth  %> </p>
+            
+            <% if @student.date_of_birth.present? %>
+            <p> <strong>Date Of Birth 🧒 : </strong> <%= @student.date_of_birth.strftime('%A, %b %d %Y' )  %> </p>
+            <% end %>
+            
+            <p> <strong>Date Of Birth 🧒 : </strong> <%= formatted_date(@student.date_of_birth)  %> </p>
+            
+            <p> <strong> Age 🧒 : </strong> <%= @student.age  %> </p>
+
+            <%= link_to "Back", admin_students_path, class:'btn btn-primary' %>
+            <%= link_to "Edit", edit_admin_student_path, class:'btn btn-primary' %>
+        </div>
+    </div>
+</div>

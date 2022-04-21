@@ -1405,4 +1405,34 @@
     Then use like 
         <%= image_tag "myimg.jpg", class: "rounded-circle" %>
 
-59. 
+59. Moving and managing crud to admin side 
+
+    Add Student Controller in admin directory like 
+        app/controllers/admin/students_controller.rb
+    Add view for admin students controller 
+       app/views/admin/students
+    Change and set path according to admin path  also chng form modal to admin / students 
+    Add routes for resource student like 
+        namespace :admin do 
+            resources :students
+            get 'dashboard' => 'dashboard#index'
+        end 
+
+    Refactor code for layout in admins pages like create admin_controller 
+        app/controllers/admin_controller.rb
+            class AdminController < ApplicationController 
+                layout 'admin'
+            end
+        Now inherit all the admin pages controller with AdminController like 
+            class Admin::DashboardController < AdminController    
+                def index 
+                end
+            end
+
+    Lets Remove unnecessary sidebar links and make sidebar links properly working 
+    practical : app/views/shared/_admin_sidebar.html.erb
+    LIke :  <%= link_to "Students", admin_students_path, class: "collapse-item" %>
+
+60. Add Pagination to resources Using Kaminari Gems 
+
+61. Alternative to kaminari gems 

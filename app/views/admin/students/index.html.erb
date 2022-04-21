@@ -1,0 +1,28 @@
+<div class="col-lg-10">
+    <!-- notice  -->
+    <p><%= notice %></p>
+
+    <h1> Listing Students </h1>
+    <%= link_to 'Add New Student', new_admin_student_path, class:'btn btn-primary btn-lg' %>
+
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Full Name with email</th>
+                <th colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @students.each do |student| %>
+            <tr>
+                <td><%= student.name_with_email %> </td>
+                <td><%= link_to 'View', admin_student_path(student) %></td>
+                <td><%= link_to 'Edit', edit_admin_student_path(student) %></td>
+                <td><%= link_to 'Delete', admin_student_path(student), method: :delete, data: {confirm: "Are You sure"} %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+

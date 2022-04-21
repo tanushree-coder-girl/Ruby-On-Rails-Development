@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # dashboard
   namespace :admin do 
+    resources :students
     get 'dashboard' => 'dashboard#index'
   end
 
