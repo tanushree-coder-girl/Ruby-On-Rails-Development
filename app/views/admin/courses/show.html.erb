@@ -1,0 +1,11 @@
+<div class="col-lg-10">
+  <div class="card rounded-0 shadow mt-5 mb-5">
+      <div class="card-body">
+        <p id="notice"><%= notice %></p>
+        <h1> Name 📕 : <%= @course.name %>  </h1>
+        <p> <strong> Description 💴 : </strong>  <%= @course.description  %> </p>
+        <%= link_to "Back", admin_courses_path, class:'btn btn-primary' %>
+        <%= link_to "Edit", edit_admin_course_path(@course), class:'btn btn-primary' %>
+      <div>
+  <div>
+</div>

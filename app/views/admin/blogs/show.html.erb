@@ -1,0 +1,21 @@
+<div class="col-lg-10">
+    <div class="card rounded-0 shadow mt-5 mb-5">
+        <div class="card-body">
+
+            <p>
+                <%= notice %>
+            </p>
+            <h1> Blog Title 🧑‍🎓 : <%= @blog.title %>
+            </h1>
+
+            <p> <strong> Content 📧 : </strong>
+                <%= @blog.content %>
+            </p>
+
+            <%= link_to "Back" , admin_blogs_path, class: 'btn btn-primary' %> |
+                <%= link_to "Edit" , edit_admin_blog_path, class: "btn btn-primary" %>
+
+        </div>
+
+    </div>
+</div>

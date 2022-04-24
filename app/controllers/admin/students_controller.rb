@@ -8,7 +8,9 @@ class Admin::StudentsController < AdminController
 
     # for displaying all records 
     def index
-        @students = Student.all 
+        # @students = Student.all.page(params[:page])
+        @q = Student.ransack(params[:q])
+        @students = @q.result(distinct: true).page(params[:page])
     end
     
     # for creating form instance 

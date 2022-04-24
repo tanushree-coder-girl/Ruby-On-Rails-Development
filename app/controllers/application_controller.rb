@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+    include Pagy::Backend
+
     # Action controller callbacks and filters 
     before_action :print_display_message 
     after_action :after_display_msg 

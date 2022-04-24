@@ -1,4 +1,7 @@
 class Student < ApplicationRecord
+   # kaminari gem for pagination 
+   paginates_per 10
+
    # has many association 
    has_many :blogs
    # has and belongs to many association

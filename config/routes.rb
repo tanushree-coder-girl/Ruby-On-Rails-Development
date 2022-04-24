@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :projects
-  resources :courses
+   resources :projects
+   resources :courses
   # Add own custom root path
   root 'welcome#index'
 
@@ -11,12 +11,15 @@ Rails.application.routes.draw do
   get 'welcome/contact'
 
   # resources routing 
-  resources :students
-  resources :blogs
+   resources :students
+   resources :blogs
 
   # dashboard
   namespace :admin do 
     resources :students
+    resources :courses
+    resources :projects
+    resources :blogs
     get 'dashboard' => 'dashboard#index'
   end
 

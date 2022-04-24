@@ -31,6 +31,17 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Faker for dumy data 
 gem 'faker', '~> 2.19'
 
+# kaminari gem for pagination
+gem 'kaminari'
+
+# for paginations 
+gem 'pagy', '~> 5.10' # omit patch digit
+gem 'will_paginate', '~> 3.3'
+gem 'will_paginate-bootstrap4'
+
+# Ransack gem for search implemetnation
+gem 'ransack'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

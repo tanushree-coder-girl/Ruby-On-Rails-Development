@@ -1,4 +1,4 @@
-class Course < ApplicationRecord 
+class Course < ApplicationRecord     
     # Active Supoort Concern
     include Validatable
 

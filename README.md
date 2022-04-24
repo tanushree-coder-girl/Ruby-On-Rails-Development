@@ -1434,5 +1434,52 @@
     LIke :  <%= link_to "Students", admin_students_path, class: "collapse-item" %>
 
 60. Add Pagination to resources Using Kaminari Gems 
+    https://github.com/kaminari/kaminari 
+
+    Step-1 => add gem in Gemfile 
+        gem 'kaminari'
+    Step-2 => Install bundle 
+        bundle 
+    Step-3 => Add per page in modal in which resources you want - app/models/student.rb
+        paginates_per 10 
+    Step-4 => Add in controller like app/controllers/admin/students_controller.rb
+        def index
+            @students = Student.all.page(params[:page])
+        end
+    Step-5 => Add in views like app/views/admin/students/index.html.erb
+            <%= paginate @students %>
+    Step-6 => generate kaminari view by command line : 
+        rails g kaminari:views bootstrap4
 
 61. Alternative to kaminari gems 
+    1. gem 'will_paginate' 
+        https://github.com/mislav/will_paginate
+    2. gem 'pagy' 
+        https://github.com/ddnexus/pagy 
+
+62. Implementing Search Using Ransack Gem 
+    https://github.com/activerecord-hackery/ransack
+    https://rubygems.org/gems/ransack/versions/1.7.0
+    https://www.rubydoc.info/gems/ransack/1.7.0
+
+    step1 : add gem 
+        gem 'ransack'
+    step2 : bundle install 
+        bundle 
+    step3 : add in controller where you want to add search filter like :
+        app/controllers/admin/students_controller.rb
+        @q = Student.ransack(params[:q])
+        @students = @q.result(distinct: true)
+    Step4: Now add form for search using ransack 
+    Like: 
+        <%= search_form_for @q, url: :admin_students do |f| %>
+            <%= f.label :first_name %>
+            <%= f.search_field :first_name_cont %>
+            <%= f.submit class:'btn btn-primary btn-lg' %>
+        <% end %> 
+
+    Note: you can search by any column you want 
+    Search Marches : 
+    https://activerecord-hackery.github.io/ransack/getting-started/search-matches
+
+63. 
