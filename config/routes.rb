@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admin_users
    resources :projects
    resources :courses
   # Add own custom root path

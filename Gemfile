@@ -42,6 +42,9 @@ gem 'will_paginate-bootstrap4'
 # Ransack gem for search implemetnation
 gem 'ransack'
 
+# devise gem for authetication 
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

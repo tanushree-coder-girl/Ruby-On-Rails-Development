@@ -1482,4 +1482,48 @@
     Search Marches : 
     https://activerecord-hackery.github.io/ransack/getting-started/search-matches
 
-63. 
+63. Implementing authenticating in rails app using devise gem 
+    https://rubygems.org/gems/devise
+    https://github.com/heartcombo/devise
+
+    step-1 : add gem 
+        gem 'devise'
+    step-2 : install bundle 
+        bundle 
+    Step-3 install devise using command 
+        rails generate devise:install 
+        Follow => What written in instruction in command after runnig these command
+    Step-4 lets generate devise model 
+        rails g devise admin_user
+        rails db:migrate  
+    step-5 Now check routes start your server and visit signin signup pages like 
+        http://localhost:3000/admin_users/sign_in
+        http://localhost:3000/admin_users/sign_up 
+    step-6 login and add link for login logout in header 
+    step-7 here are some important method which is provided by devise 
+        admin_user_signed_in     => for check whether user login or not login
+    step-8 Redirect user to dashbaord if login 
+        We have a helper method provided by devise add this in app/controllers/application_controller.rb 
+
+        protected 
+        def after_sign_in_path_for(resource)
+            admin_dashboard_path
+        end
+        
+64. before_action authentication in devise 
+    Devise will create some helpers to use inside your controllers and views. To set up a controller with user authentication, just add this before_action.
+
+    in our case we want to show admin page only if user is logged in so we will add before action in out admin_controller like: 
+
+    before_action :authenticate_admin_user!
+
+    app/controllers/admin_controller.rb 
+
+65. Devise logout link from dashboard 
+    app/views/shared/_admin_logout_modal.html.erb 
+   <%= link_to "Logout", destroy_admin_user_session_path, method: :delete, class: 'btn btn-primary' %>
+
+66. Customizing Devise Views 
+    step: 1 generate all the views 
+        rails g devise:views admin_users
+
