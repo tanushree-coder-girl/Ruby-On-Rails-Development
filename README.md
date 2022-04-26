@@ -1528,4 +1528,32 @@
         rails g devise:views admin_users 
     step: 2 generate controllers 
         rails g devise:controllers admin_users
+    step-3 After create controllers Some setup you must do manually if you haven't yet:
+    Ensure you have overridden routes for generated controllers in your routes.rb.
+    Like:
+        devise_for :admin_users, controllers: {
+            sessions: 'admin_users/sessions',
+            registrations: 'admin_users/registrations',
+            passwords: 'admin_users/passwords',
+        }   
+    step-4 add layout for login signup pages layout 
+        Create a layout for auth 
+            app/views/layouts/auth.html.erb 
+        add this layout in controller in which we want to add this layout like:
+            layout "auth"
+        for login controller
+            app/controllers/admin_users/sessions_controller.rb
+        for registration controller 
+            app/controllers/admin_users/registrations_controller.rb
+        for password forget controller
+            app/controllers/admin_users/passwords_controller.rb
 
+    Step-5 add customize bootstrap signin pages by your admin theme just copy paste and set your form like:
+        for login page:  
+            app/views/admin_users/sessions/new.html.erb
+        for registration page 
+            app/views/admin_users/registrations/new.html.erb 
+        for password forget page 
+            app/views/admin_users/passwords/new.html.erb
+
+67. 
