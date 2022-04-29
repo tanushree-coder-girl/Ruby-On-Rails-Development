@@ -1,6 +1,11 @@
 <div class="col-lg-10">
     <div class="card rounded-0 shadow mt-5 mb-5">
         <div class="card-body">
+
+            <% if @student.profile_image.attached? %>
+                <%= image_tag @student.profile_image, class:"img-fluid img-thumbnail", style: "height:200px", width:"200px" %>
+            <% end %>
+
             <p> <%= notice %> </p>
             <!-- <h1> Student Name 🧑‍🎓 : <%= @student.first_name %>  <%= @student.last_name  %> </h1> -->
             <h1> Student Name 🧑‍🎓 : <%= @student.full_name %>  </h1>

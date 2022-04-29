@@ -20,6 +20,9 @@ global.$ = jQuery;
 
 import "bootstrap"; 
 
+require("trix")
+require("@rails/actiontext")
+
 import "./plugins/jquery.easing.min"
 import "./plugins/sb-admin-2.min"
 // import "./plugins/Chart.min"

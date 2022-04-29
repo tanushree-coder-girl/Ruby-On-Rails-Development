@@ -69,7 +69,7 @@ class Admin::StudentsController < AdminController
     end
 
     def student_params
-        params.require(:student).permit(:first_name, :last_name, :email, :local_address, :permanent_address, :permanent_contact_number, :alternate_contact_number, :date_of_birth)
+        params.require(:student).permit(:first_name, :last_name, :email, :local_address, :permanent_address, :permanent_contact_number, :alternate_contact_number, :date_of_birth, :profile_image)
     end 
 
     def formatted_date(date)

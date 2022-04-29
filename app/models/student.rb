@@ -2,6 +2,9 @@ class Student < ApplicationRecord
    # kaminari gem for pagination 
    paginates_per 10
 
+   # Active storage image uploading 
+   has_one_attached :profile_image
+
    # has many association 
    has_many :blogs
    # has and belongs to many association

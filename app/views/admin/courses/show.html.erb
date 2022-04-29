@@ -4,6 +4,7 @@
         <p id="notice"><%= notice %></p>
         <h1> Name 📕 : <%= @course.name %>  </h1>
         <p> <strong> Description 💴 : </strong>  <%= @course.description  %> </p>
+        <p> <strong> Description 💴 : </strong>  <%= @course.content  %> </p>
         <%= link_to "Back", admin_courses_path, class:'btn btn-primary' %>
         <%= link_to "Edit", edit_admin_course_path(@course), class:'btn btn-primary' %>
       <div>
