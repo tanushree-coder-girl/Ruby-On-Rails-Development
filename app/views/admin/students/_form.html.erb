@@ -1,11 +1,14 @@
 <%= form_with(model: [:admin, student]) do |form| %>
 
     <!-- for checking errors -->
-    <% if @student.errors.any? %>
+    <!-- <% if @student.errors.any? %>
         <% @student.errors.full_messages.each do |msg| %>
-            <p> <%= msg %> </p>
+            <p> <% msg %> </p>
         <% end %>
-    <% end %>
+    <% end %> -->
+
+    <!-- partial for error msg -->
+    <%= render "admin/shared/errors", model: student %>
 
     <div class="form-group">
         <%= form.label :first_name%>

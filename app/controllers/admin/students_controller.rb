@@ -32,6 +32,9 @@ class Admin::StudentsController < AdminController
         @student = Student.new(student_params)
 
         if @student.save 
+            # mailer 
+            CrudNotificationsMailer.create_notifications(@student).deliver_now 
+
             redirect_to admin_students_path , notice: "Student Added Succeessfully"
         else
             render :new
@@ -51,6 +54,9 @@ class Admin::StudentsController < AdminController
     def update
         #@student = Student.find(params[:id])
         if @student.update(student_params) 
+             # mailer 
+             CrudNotificationsMailer.update_notifications(@student).deliver_now 
+
             redirect_to admin_student_path(@student), notice: 'Student has been Updated Successfully'
         else
             render :edit
@@ -60,6 +66,11 @@ class Admin::StudentsController < AdminController
     def destroy
         #@student = Student.find(params[:id])
         @student.destroy 
+
+        # mailer 
+        CrudNotificationsMailer.delete_notifications(@student).deliver_now 
+
+
         redirect_to admin_students_path, notice: 'Student has been deleted Successfully'
     end
 

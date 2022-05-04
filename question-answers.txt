@@ -162,4 +162,20 @@
 
 78. What is the difference between after_save , after_create and after_update callbacks? 
 
-79. 
+79. What is Rails controller? 
+
+80. How controller works in rails? 
+
+81. What are the naming conventions for a controller? 
+
+82. What is the difference between a controller method and controller action? 
+
+83. What is the difference between render and redirect? 
+
+84. Is it possible to use multiple renders or redirects in a controller action? 
+
+85. What kind of a controller actions does not required a view template? 
+
+86. How many types of parameters are available in a web application? 
+
+87. What is ApplicationController in rails? 

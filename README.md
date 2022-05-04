@@ -1102,9 +1102,20 @@
     Recommended method is includes
     Practical on : app/controllers/blogs_controller.rb
 
-43. ActionController in details 
+43. ActionController in details or Action Controller (Rails Controller Basics)
     Action controller is the C in the MVC 
         After the router has determined which controller to use for a request, the controller is responsible for making sense of the request and producing the appropriate output. 
+
+    Some important Point to remember: 
+        1. The Rails controller is the logical center of your application. It coordinates the interaction between the user, the views, and the model. 
+        2. Controller class names use CamelCase and have Controller as a suffix. The Controller suffix is always singular. The name of the resource is usually plural. 
+        example => class: StudentController   file name: student_controller.rb 
+        3. controller action is responsible for routing external requests to internal actions. and controller method is wriiten in private or protected section which can be used inside action. 
+        4. Render tells Rails which view or asset to show a user, without losing access to any variables defined in the controller action. Redirect is different. The redirect_to method tells your browser to send a request to another URL 
+        5. You can redirect only once at an action call.
+        6. create, update, destroy action does not required template bcoz they are member method which uses put , destroy routes not get route. 
+        7. There are two kinds of parameters possible in a web application: The first are parameters that are sent as part of the URL, called query string parameters. The query string is everything after "?" in the URL. The second type of parameter is usually referred to as POST data.
+        8. All the controller is inherits from ApplicationController bcoz this is by default main controller.  
 
 44. Action controller Callbacks in Controller 
     Rails provides before and after actions in controllers as an easy way to call methods before or after executing controller actions as response to route requests. Action Callbacks can be particularly helpful when implementing authentication/authorization for example, and are heavily used by gems such as Devise.
@@ -1680,6 +1691,58 @@
     Example Events for sending emails: 
         1. Sending a welcome email after registration 
         2. Sending Confirmation email before allowing users to access their system. 
-        3. Weekly updates when you subscribe an application's newsletter. 
+        3. Weekly updates when you subscribe an application's newsletter.  
 
-75. 
+    All mailer Files inside 
+        app/mailers
+    Main View layout for mailer template is: 
+        app/views/layouts/mailer.html.erb 
+        app/views/layouts/mailer.text.erb
+    All Mailer files inherit with: 
+        app/mailers/application_mailer.rb
+
+75. Sending Email in rails app and preview using letter opener. 
+    Genertate Rails Mailer using generate command
+        rails g mailer mailer_class mailer_method_name 
+
+            rails g mailer crud_notifications create_notifications update_notifications delete_notifications 
+
+    So this command will genetate mailer file and view for mailer in txt and html format 
+        Mailer file:
+            app/mailers/crud_notifications_mailer.rb
+        Views: 
+            app/views/crud_notifications_mailer  
+
+    Now add your logic in mailer file 
+        for example : 
+            app/mailers/crud_notifications_mailer.rb 
+    
+    Now write your email template in view file 
+        for example :
+            app/views/crud_notifications_mailer/create_notifications.html.erb 
+        
+    Now Call your mailer methods in your controller for deliver like: 
+            MailerClassName.MailerMathod(@object).deliver_now
+        For example:
+             CrudNotificationsMailer.create_notifications(@student).deliver_now 
+        for example :
+            app/controllers/admin/students_controller.rb 
+        
+    Letter Opener Gem: 
+        Preview email in the default browser instead of sending it. 
+        https://github.com/ryanb/letter_opener
+            Step-1 Add Gem
+                gem "letter_opener"
+                Note: Add this gem in group: :development
+                Then install bundlle
+                    bundle  
+            Step-2 Add This in config/environments/development.rb
+                config.action_mailer.delivery_method = :letter_opener
+                config.action_mailer.perform_deliveries = true
+
+76. Extending Rails partails to display model validation errors
+    Lets refactor the code...
+    Create Separate partials file for admin Errors messages 
+        app/views/admin/shared/_errors.html.erb
+    Then Render this partial in every admin form where we want to display errors 
+        <%= render "admin/shared/errors", model: student %>
